@@ -119,6 +119,14 @@
                     </a>
                 </li>
 
+                <!-- Support Tickets -->
+                <li class="nav-item">
+                    <a href="{{ route('admin.tickets.index') }}" class="nav-link {{ request()->routeIs('admin.tickets.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-life-ring"></i>
+                        <p>Support Tickets</p>
+                    </a>
+                </li>
+
                 <!-- Reports -->
                 <li class="nav-item">
                     <a href="{{ route('admin.reports.index') }}" class="nav-link {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}">

@@ -9,6 +9,7 @@ use App\Models\Plan;
 use App\Models\Transaction;
 use App\Models\Router;
 use App\Models\UserRecharge;
+use App\Models\Ticket;
 
 class DashboardController extends Controller
 {
@@ -36,7 +37,11 @@ class DashboardController extends Controller
             ->limit(5)
             ->get();
 
-        return view('customer.dashboard', compact('customer', 'activePlan', 'recentTransactions'));
+        $openTickets = Ticket::where('customer_id', $customerId)
+            ->where('status', 'open')
+            ->count();
+
+        return view('customer.dashboard', compact('customer', 'activePlan', 'recentTransactions', 'openTickets'));
     }
 
     public function adminDashboard()
@@ -62,13 +67,22 @@ class DashboardController extends Controller
             ->whereYear('created_at', now()->year)
             ->sum('price');
 
+        $openTickets = Ticket::where('status', 'open')->count();
+        $inProgressTickets = Ticket::where('status', 'in_progress')->count();
+        $pendingTickets = Ticket::where('status', 'pending')->count();
+        $closedTickets = Ticket::where('status', 'closed')->count();
+
         return view('admin.dashboard', compact(
-            'totalCustomers', 
-            'activeCustomers', 
-            'totalPlans', 
+            'totalCustomers',
+            'activeCustomers',
+            'totalPlans',
             'totalRouters',
             'recentTransactions',
-            'monthlyRevenue'
+            'monthlyRevenue',
+            'openTickets',
+            'inProgressTickets',
+            'pendingTickets',
+            'closedTickets'
         ));
     }
 }
