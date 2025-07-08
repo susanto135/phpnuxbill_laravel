@@ -135,6 +135,31 @@
                     </a>
                 </li>
 
+                <!-- CRM -->
+                <li class="nav-item {{ request()->routeIs('admin.leads.*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->routeIs('admin.leads.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-address-book"></i>
+                        <p>
+                            CRM
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.leads.index') }}" class="nav-link {{ request()->routeIs('admin.leads.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Leads</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.leads.create') }}" class="nav-link {{ request()->routeIs('admin.leads.create') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Lead</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <!-- Settings -->
                 <li class="nav-item">
                     <a href="{{ route('admin.settings.index') }}" class="nav-link {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">

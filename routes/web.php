@@ -87,6 +87,16 @@ Route::prefix('admin')->middleware(['admin.auth'])->group(function () {
         Route::put('/{id}', [RouterController::class, 'update'])->name('update');
         Route::delete('/{id}', [RouterController::class, 'destroy'])->name('destroy');
     });
+
+    // CRM - Lead management
+    Route::prefix('leads')->name('admin.leads.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\LeadController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\LeadController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\LeadController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [\App\Http\Controllers\LeadController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [\App\Http\Controllers\LeadController::class, 'update'])->name('update');
+        Route::delete('/{id}', [\App\Http\Controllers\LeadController::class, 'destroy'])->name('destroy');
+    });
     
     // Transaction management
     Route::prefix('transactions')->name('admin.transactions.')->group(function () {
