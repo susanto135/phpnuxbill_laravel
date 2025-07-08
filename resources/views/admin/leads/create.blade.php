@@ -1,0 +1,39 @@
+@extends('layouts.app')
+
+@section('page-title', 'Add Lead')
+
+@section('content')
+<div class="card">
+    <div class="card-body">
+        <form action="{{ route('admin.leads.store') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input type="text" name="phone" class="form-control" value="{{ old('phone') }}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <select name="status" class="form-select">
+                    @foreach(['New','Contacted','Qualified','Lost','Customer'] as $status)
+                        <option value="{{ $status }}" @selected(old('status') === $status)>{{ $status }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Notes</label>
+                <textarea name="notes" class="form-control" rows="3">{{ old('notes') }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="{{ route('admin.leads.index') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+@endsection
