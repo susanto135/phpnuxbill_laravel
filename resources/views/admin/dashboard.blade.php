@@ -75,6 +75,65 @@
 </div>
 
 <div class="row">
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-primary">
+            <div class="inner">
+                <h3>{{ $openTickets }}</h3>
+                <p>Open Tickets</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-folder-open"></i>
+            </div>
+            <a href="{{ route('admin.tickets.index', ['status' => 'open']) }}" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>{{ $inProgressTickets }}</h3>
+                <p>Tickets In Progress</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-spinner"></i>
+            </div>
+            <a href="{{ route('admin.tickets.index', ['status' => 'in_progress']) }}" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-secondary">
+            <div class="inner">
+                <h3>{{ $pendingTickets }}</h3>
+                <p>Pending Tickets</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <a href="{{ route('admin.tickets.index', ['status' => 'pending']) }}" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>{{ $closedTickets }}</h3>
+                <p>Closed Tickets</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <a href="{{ route('admin.tickets.index', ['status' => 'closed']) }}" class="small-box-footer">
+                More info <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
     <!-- Recent Transactions -->
     <div class="col-md-8">
         <div class="card">

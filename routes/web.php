@@ -11,6 +11,7 @@ use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,10 @@ Route::middleware(['customer.auth'])->group(function () {
     Route::get('/customer/transactions', [TransactionController::class, 'customerTransactions'])->name('customer.transactions');
     Route::get('/customer/vouchers', [VoucherController::class, 'customerVouchers'])->name('customer.vouchers');
     Route::post('/customer/voucher/activate', [VoucherController::class, 'activateVoucher'])->name('customer.voucher.activate');
+
+    Route::get('/customer/tickets', [TicketController::class, 'customerIndex'])->name('customer.tickets.index');
+    Route::get('/customer/tickets/create', [TicketController::class, 'create'])->name('customer.tickets.create');
+    Route::post('/customer/tickets', [TicketController::class, 'store'])->name('customer.tickets.store');
 });
 
 // Admin routes
@@ -97,6 +102,11 @@ Route::prefix('admin')->middleware(['admin.auth'])->group(function () {
         Route::post('/', [VoucherController::class, 'store'])->name('store');
         Route::get('/{id}', [VoucherController::class, 'show'])->name('show');
         Route::delete('/{id}', [VoucherController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('tickets')->name('admin.tickets.')->group(function () {
+        Route::get('/', [TicketController::class, 'index'])->name('index');
+        Route::post('/{id}/status', [TicketController::class, 'updateStatus'])->name('updateStatus');
     });
     
     // Payment management
